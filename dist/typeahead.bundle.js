@@ -1472,7 +1472,6 @@
             this.isActivated = false;
             this.autoselect = !!o.autoselect;
             this.minLength = o.minLength;
-            this.keepOpenOnSelect = !!o.keepOpenOnSelect;
             this.$node = buildDom(o.input, o.withHint);
             $menu = this.$node.find(".tt-dropdown-menu");
             $input = this.$node.find(".tt-input");
@@ -1646,10 +1645,8 @@
                 this.input.setInputValue(datum.value, true);
                 this._setLanguageDirection();
                 this.eventBus.trigger("selected", datum.raw, datum.datasetName);
-                if (!this.keepOpenOnSelect){
-                    this.dropdown.close();
-                    _.defer(_.bind(this.dropdown.empty, this.dropdown));
-                }
+                this.dropdown.close();
+                _.defer(_.bind(this.dropdown.empty, this.dropdown));
             },
             open: function open() {
                 this.dropdown.open();
@@ -1749,8 +1746,7 @@
                         withHint: _.isUndefined(o.hint) ? true : !!o.hint,
                         minLength: minLength,
                         autoselect: o.autoselect,
-                        datasets: datasets,
-                        keepOpenOnSelect: !!o.keepOpenOnSelect
+                        datasets: datasets
                     });
                     $input.data(typeaheadKey, typeahead);
                 }
