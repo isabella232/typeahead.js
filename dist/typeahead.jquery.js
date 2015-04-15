@@ -686,7 +686,7 @@
                 suggestion: templates.suggestion || suggestionTemplate
             };
             function suggestionTemplate(context) {
-                return "<p>" + displayFn(context) + "</p>";
+                return "<p>" + window._.escape(displayFn(context)) + "</p>";
             }
         }
         function isValidName(str) {
