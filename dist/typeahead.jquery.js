@@ -1,7 +1,7 @@
 /*!
  * typeahead.js 0.10.4
  * https://github.com/twitter/typeahead.js
- * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
+ * Copyright 2013-2015 Twitter, Inc. and other contributors; Licensed MIT
  */
 
 (function($) {
@@ -865,6 +865,7 @@
             this.isActivated = false;
             this.autoselect = !!o.autoselect;
             this.minLength = o.minLength;
+            this.keepOpenOnSelect = !!o.keepOpenOnSelect;
             this.$node = buildDom(o.input, o.withHint);
             $menu = this.$node.find(".tt-dropdown-menu");
             $input = this.$node.find(".tt-input");
@@ -1039,7 +1040,9 @@
                 this._setLanguageDirection();
                 this.eventBus.trigger("selected", datum.raw, datum.datasetName);
                 this.dropdown.close();
-                _.defer(_.bind(this.dropdown.empty, this.dropdown));
+                if (!this.keepOpenOnSelect) {
+                    _.defer(_.bind(this.dropdown.empty, this.dropdown));
+                }
             },
             open: function open() {
                 this.dropdown.open();
@@ -1139,6 +1142,7 @@
                         withHint: _.isUndefined(o.hint) ? true : !!o.hint,
                         minLength: minLength,
                         autoselect: o.autoselect,
+                        keepOpenOnSelect: !!o.keepOpenOnSelect,
                         datasets: datasets
                     });
                     $input.data(typeaheadKey, typeahead);
