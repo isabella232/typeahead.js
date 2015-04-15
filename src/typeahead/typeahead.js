@@ -292,7 +292,9 @@ var Typeahead = (function() {
 
       // #118: allow click event to bubble up to the body before removing
       // the suggestions otherwise we break event delegation
-      _.defer(_.bind(this.dropdown.empty, this.dropdown));
+      if (!this.keepOpenOnSelect) {
+        _.defer(_.bind(this.dropdown.empty, this.dropdown));
+      }
     },
 
     // ### public

@@ -865,6 +865,7 @@
             this.isActivated = false;
             this.autoselect = !!o.autoselect;
             this.minLength = o.minLength;
+            this.keepOpenOnSelect = !!o.keepOpenOnSelect;
             this.$node = buildDom(o.input, o.withHint);
             $menu = this.$node.find(".tt-dropdown-menu");
             $input = this.$node.find(".tt-input");
