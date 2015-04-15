@@ -200,7 +200,7 @@ var Dataset = (function() {
     };
 
     function suggestionTemplate(context) {
-      return '<p>' + displayFn(context) + '</p>';
+      return '<p>' + window._.escape(displayFn(context)) + '</p>';
     }
   }
 
