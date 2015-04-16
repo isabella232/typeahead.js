@@ -289,11 +289,11 @@ var Typeahead = (function() {
       this._setLanguageDirection();
 
       this.eventBus.trigger('selected', datum.raw, datum.datasetName);
-      this.dropdown.close();
 
       // #118: allow click event to bubble up to the body before removing
       // the suggestions otherwise we break event delegation
       if (!this.keepOpenOnSelect) {
+        this.dropdown.close();
         _.defer(_.bind(this.dropdown.empty, this.dropdown));
       }
     },

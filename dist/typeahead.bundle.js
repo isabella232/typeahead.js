@@ -1646,8 +1646,8 @@
                 this.input.setInputValue(datum.value, true);
                 this._setLanguageDirection();
                 this.eventBus.trigger("selected", datum.raw, datum.datasetName);
-                this.dropdown.close();
                 if (!this.keepOpenOnSelect) {
+                    this.dropdown.close();
                     _.defer(_.bind(this.dropdown.empty, this.dropdown));
                 }
             },
